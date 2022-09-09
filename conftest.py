@@ -1,5 +1,12 @@
 from datetime import datetime
 import logging
+import time
+
+# Logging setup
+timestr = time.strftime("%Y-%m-%d_%H%M%S")
+log = logging.getLogger(__name__)
+logging.basicConfig(filename=timestr, encoding='utf-8',
+                    level=logging.DEBUG, format='%(asctime)s %(message)s')
 
 log = logging.getLogger(__name__)
 
