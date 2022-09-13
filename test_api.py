@@ -13,7 +13,7 @@ logging.basicConfig(filename=timestr, encoding='utf-8',
 # base_url = 'http://localhost:8000/api'
 base_url = 'scrum-api.carsonbutler.dev'
 username = 'test_user'
-password = 'password321'
+password = 'pword321'
 
 # Define the data for tests
 organization_data = {'name': 'Test API Organization'}

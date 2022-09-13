@@ -48,7 +48,6 @@ class Board():
         except:
             return False
 
-
     def edit_board_title(self, wait):
         try:
             nav_board_items = wait.until(EC.presence_of_all_elements_located(
@@ -81,32 +80,33 @@ class Board():
             return False
 
     def edit_board_prefix(self, wait):
-        nav_board_items = wait.until(EC.presence_of_all_elements_located(
-            (By.CLASS_NAME, nav_boards_item_class)))
-        for ele in nav_board_items:
-            if ele.text.lower() == new_board_name.lower():
-                target_board = ele
-        target_board.click()
+        try:
 
-        board_settings_btn = wait.until(
-            EC.presence_of_element_located((By.XPATH, board_settings_btn_xpath)))
-        board_settings_btn.click()
+            prefix_input = wait.until(EC.presence_of_element_located(
+                (By.XPATH, edit_board_prefix_xpath)))
+            prefix_input.clear()
+            prefix_input.send_keys(changed_board_prefix)
 
-        prefix_input = wait.until(EC.presence_of_element_located(
-            (By.XPATH, edit_board_prefix_xpath)))
-        prefix_input.clear()
-        prefix_input.send_keys(changed_board_prefix)
+            save_btn = wait.until(EC.presence_of_element_located(
+                (By.XPATH, edit_board_save_btn_xpath)))
+            save_btn.click()
+            time.sleep(1)
 
-        save_btn = wait.until(EC.presence_of_element_located(
-            (By.XPATH, edit_board_save_btn_xpath)))
-        save_btn.click()
-        time.sleep(1)
-        board_settings_btn.click()
+            board_settings_btn = wait.until(
+                EC.presence_of_element_located((By.XPATH, board_settings_btn_xpath)))
+            board_settings_btn.click()
 
-        new_prefix = wait.until(EC.presence_of_element_located(
-            (By.XPATH, edit_board_prefix_xpath))).get_attribute('value')
+            new_prefix = wait.until(EC.presence_of_element_located(
+                (By.XPATH, edit_board_prefix_xpath))).get_attribute('value')
 
-        return new_prefix
+            save_btn = wait.until(EC.presence_of_element_located(
+                (By.XPATH, edit_board_save_btn_xpath)))
+            save_btn.click()
+
+            return new_prefix.lower()
+
+        except:
+            return False
 
     def edit_board_title_and_prefix(self, wait):
         nav_board_items = wait.until(EC.presence_of_all_elements_located(

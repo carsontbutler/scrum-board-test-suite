@@ -4,10 +4,16 @@ from selenium.webdriver.common.by import By
 from TestSuite.configuration import *
 from TestSuite.selectors import *
 
+import time
+
 class Column():
     def create_columns(self, wait):
         col_header_text = []
         try:
+            board_settings_btn = wait.until(
+                EC.presence_of_element_located((By.XPATH, board_settings_btn_xpath)))
+            board_settings_btn.click()
+
             columns_btn = wait.until(EC.presence_of_element_located(
                 (By.XPATH, edit_board_columns_btn_xpath)))
             columns_btn.click()
@@ -24,6 +30,7 @@ class Column():
                 save_new_column_btn = wait.until(
                     EC.presence_of_element_located((By.XPATH, save_new_column_btn_xpath)))
                 save_new_column_btn.click()
+                time.sleep(0.5)
 
             close_btn = wait.until(EC.presence_of_element_located(
                 (By.XPATH, edit_columns_close_btn_xpath)))
@@ -35,12 +42,13 @@ class Column():
             col_headers = wait.until(EC.presence_of_all_elements_located(
                 (By.CLASS_NAME, col_header_class)))
 
-            
             for i in range(len(col_headers)):
                 col_header_text.append(col_headers[i].text)
+
             return col_header_text
 
         except:
+            time.sleep(5)
             return col_header_text
 
     def edit_column():
