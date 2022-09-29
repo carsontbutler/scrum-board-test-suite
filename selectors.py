@@ -42,6 +42,8 @@ save_new_column_btn_xpath = '/html/body/div[5]/div/div/div[3]/div[1]/button'
 edit_columns_close_btn_xpath = '/html/body/div[3]/div/div/div[3]/div/div/button'
 col_header_class = 'column-name'
 close_btn_class = 'cancel-btn'
+edit_col_btn_class = 'edit-btn'
+edit_col_name_input_class = 'column-name'
 
 
 #-----Input Data-----#
@@ -56,3 +58,4 @@ changed_board_prefix = 'TB1x'
 
 # Column Data
 new_col_names = ['New Column 1', 'New Column 2', 'New Column 3']
+changed_col_names = ['Changed Col 1', 'Changed Col 2', 'Changed Col 3']

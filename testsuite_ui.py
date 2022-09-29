@@ -73,4 +73,9 @@ class TestUI():
         log.info('Started test_create_columns')
         assert Column.create_columns(self, wait) == new_col_names
 
+    # def test_edit_columns(self,wait):
+    #     log.info('Started test_edit_columns')
+    #     assert Column.edit_columns(self, wait) == changed_col_names
+
     #Tickets
+    

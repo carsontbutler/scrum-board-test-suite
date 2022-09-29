@@ -2,7 +2,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 from TestSuite.configuration import *
-from TestSuite.selectors import *
+from TestSuite.selectors import * 
 
 import time
 
@@ -36,9 +36,6 @@ class Column():
                 (By.XPATH, edit_columns_close_btn_xpath)))
             close_btn.click()
 
-            close_btn = wait.until(EC.presence_of_element_located((By.CLASS_NAME, close_btn_class)))
-            close_btn.click()
-
             col_headers = wait.until(EC.presence_of_all_elements_located(
                 (By.CLASS_NAME, col_header_class)))
 
@@ -48,11 +45,29 @@ class Column():
             return col_header_text
 
         except:
-            time.sleep(5)
             return col_header_text
 
-    def edit_column():
-        pass
+    def edit_columns(self, wait):
+        try:
+            board_settings_btn = wait.until(
+                EC.presence_of_element_located((By.XPATH, board_settings_btn_xpath)))
+            board_settings_btn.click()
+
+            columns_btn = wait.until(EC.presence_of_element_located(
+                (By.XPATH, edit_board_columns_btn_xpath)))
+            columns_btn.click()
+
+            edit_btns = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, edit_col_btn_class)))
+            col_names = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, edit_col_name_input_class)))
+
+            for i in range(len(edit_btns)):
+                edit_btns[i].click()
+                col_names[i].clear()
+                col_names[i].send_keys(changed_col_names[i])
+
+        except:
+            time.sleep(5)
+            return col_names[i].text
 
     def delete_column():
         pass
